@@ -19,15 +19,19 @@
       son application de contact tracing.
     </p>
     <div id="login-container">
-        <a href="#" data-behavior="login">Se connecter sur amelipro</a>
+      <a href="#" data-behavior="login">Se connecter sur amelipro</a>
     </div>
     <div id="validation-code-container">
-        Voici le code à fournir à votre patient, sous deux formes possibles :
-        <h2>Code pin à 6 chiffres</h2>
-        <div id="pin-code">123456</div> (expire dans <span id="pin-code-expiry">120 secondes</span>)
+      Voici le code à fournir à votre patient, sous deux formes possibles :
+      <h2>Code pin à 6 chiffres</h2>
+      <p>
+        <span id="pin-code">123456</span> (expire dans
+        <span id="pin-code-expiry">120 secondes</span>)
+      </p>
 
-        <h2>QR code<h2>
-        <canvas id="qr-code"></canvas> (expire dans <span id="qr-code-expiry">7 jours</span>)
+      <h2>QR code</h2>
+      <p>(expire dans <span id="qr-code-expiry">7 jours</span>)</p>
+      <canvas id="qr-code"></canvas>
     </div>
     <script src="index.js"></script>
   </body>
