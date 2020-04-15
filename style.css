@@ -1,0 +1,6 @@
+.not-logged-in #validation-code-container {
+  display: none;
+}
+.logged-in #login-container {
+  display: none;
+}

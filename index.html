@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Interface professionnel de santé | génération d'un code de validation
+    </title>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Génération d'un code de validation à destination des patients diagnostiqué covid-19, afin qu'ils puisse valider leur état de contaminé par le biais de l'application de contact tracing"
+    />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body class="not-logged-in">
+    <h1>Générer un code de validation</h1>
+    <p>
+      Ce code de validation est à transmettre au patient que vous venez de
+      diagnostiquer covid+, afin qu'il puisse confirmer son diagnostique dans
+      son application de contact tracing.
+    </p>
+    <div id="login-container">
+        <a href="#" data-behavior="login">Se connecter sur amelipro</a>
+    </div>
+    <div id="validation-code-container">
+        Voici le code à fournir à votre patient, sous deux formes possibles :
+        <h2>Code pin à 6 chiffres</h2>
+        <div id="pin-code">123456</div> (expire dans <span id="pin-code-expiry">120 secondes</span>)
+
+        <h2>QR code<h2>
+        <canvas id="qr-code"></canvas> (expire dans <span id="qr-code-expiry">7 jours</span>)
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
