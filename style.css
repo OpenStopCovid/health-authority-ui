@@ -4,3 +4,17 @@
 .logged-in #login-container {
   display: none;
 }
+
+.code {
+  border: 1px solid var(--theme-border-lighter);
+  border-radius: var(--theme-border-radius);
+  box-shadow: var(--theme-box-shadow);
+  padding: var(--space-s);
+  width: 50%;
+}
+
+.code img {
+  display: block;
+  margin: 0 auto;
+  width: 95%;
+}
