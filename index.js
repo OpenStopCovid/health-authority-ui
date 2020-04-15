@@ -10,21 +10,26 @@ document.addEventListener("click", (event) => {
 });
 
 const initiateAuth = () => {
+  // Redirect to the login URL
   document.location = loginURL;
 };
 
 const checkLoggedIn = () => {
+  // Parse the search params
   const searchParams = new URLSearchParams(
     document.location.search.replace(/\?/, "")
   );
+  // Update the userToken in memory
   userToken = searchParams.get("auth_token");
   if (userToken) {
     setLoggedIn();
   }
 };
 
-const setLoggedIn = () => {
+const setLoggedIn = (userToken) => {
+  // Display the "logged in" screen
   document.body.className = "logged-in";
+  // Remove the auth-token from the url
   history.replaceState(null, "", "./");
 };
 
