@@ -25,6 +25,7 @@ const checkLoggedIn = () => {
 
 const setLoggedIn = () => {
   document.body.className = "logged-in";
+  history.replaceState(null, "", "./");
 };
 
 // MAIN
