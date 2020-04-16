@@ -4,7 +4,7 @@ document.addEventListener("click", (event) => {
     "generate-code": generateCode,
     "print-code": printCode,
     "email-code": emailCode,
-    "display-pincode": displayPinCode,
+    "generate-pincode": generatePincode,
   };
   const behavior = event.target.getAttribute("data-behavior");
   const handler = handlers[behavior];
@@ -19,10 +19,17 @@ document.addEventListener("code-refreshed", (event) => {
   displayCode(event);
 });
 
+document.addEventListener("pincode-refreshed", (event) => {
+  console.log("received pincode-refreshed event", event);
+  if (!event.detail || !event.detail.pincode) return;
+  displayPincode(event);
+});
+
 /* PAGES */
 
 const displayCode = (event) => {
   document.querySelector("#wrapper").className = "displaying-code";
+  window.scrollTo(0, 0);
   const { qrcode } = event.detail;
   const qrcodeEl = document.querySelector("#qr-code");
   if (!qrcodeEl) return;
@@ -30,8 +37,14 @@ const displayCode = (event) => {
   console.log("refreshed the code");
 };
 
-const displayPinCode = () => {
-  console.log("TODO: display the pin code");
+const displayPincode = (event) => {
+  document.querySelector("#wrapper").className = "displaying-pincode";
+  window.scrollTo(0, 0);
+  const { pincode } = event.detail;
+  const pincodeEl = document.querySelector("#pin-code");
+  if (!pincodeEl) return;
+  pincodeEl.textContent = pincode;
+  console.log("refreshed the pincode");
 };
 
 /* VALIDATION CODES */
@@ -39,11 +52,20 @@ const displayPinCode = () => {
 const generateCode = () => {
   const event = new CustomEvent("code-refreshed", {
     detail: {
-      pincode: 123456,
       qrcode: "QR.png",
     },
   });
   console.log("firing code-refreshed event");
+  document.dispatchEvent(event);
+};
+
+const generatePincode = () => {
+  const event = new CustomEvent("pincode-refreshed", {
+    detail: {
+      pincode: 123456,
+    },
+  });
+  console.log("firing pincode-refreshed event");
   document.dispatchEvent(event);
 };
 

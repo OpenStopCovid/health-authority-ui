@@ -3,7 +3,8 @@ section {
 }
 
 .displaying-home #home,
-.displaying-code #qrcode {
+.displaying-code #qrcode,
+.displaying-pincode #pincode {
   display: block;
 }
 

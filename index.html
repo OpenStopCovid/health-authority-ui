@@ -81,7 +81,7 @@
                 <a
                   href="#"
                   title="Afficher un code PIN"
-                  data-behavior="display-pincode"
+                  data-behavior="generate-pincode"
                   >dicter un code pin à 9 chiffres</a
                 >
                 qui expire au bout d'une minute, qu'il doit entrer immédiatement
@@ -89,6 +89,25 @@
               </li>
             </ul>
           </details>
+          <hr />
+
+          <p class="section__subtitle">
+            <a href="#" class="button large" data-behavior="generate-code"
+              >nouveau patient</a
+            >
+          </p>
+        </div>
+      </section>
+      <section id="pincode" class="section section-white">
+        <div class="container container-small">
+          <h1 class="section__title" id="pin-code">
+            123456789
+          </h1>
+          <p class="section__subtitle">
+            Ce code PIN de validation est à dicter à votre patient
+            immédiatement. Il expire dans
+            <span id="pincode-expiry">120</span> secondes.
+          </p>
           <hr />
 
           <p class="section__subtitle">
