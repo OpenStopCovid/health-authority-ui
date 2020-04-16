@@ -11,6 +11,7 @@ section {
   border: 1px solid var(--theme-border-lighter);
   border-radius: var(--theme-border-radius);
   box-shadow: var(--theme-box-shadow);
+  margin-bottom: var(--space-l);
   padding: var(--space-s);
 }
 
@@ -24,5 +25,13 @@ a.button,
 a.button:active,
 a.button:focus,
 a.button:visited {
-  margin: 1em 0;
+  margin: var(--space-s) 0;
+}
+
+hr {
+  border-bottom: 5px solid var(--theme-border-lighter);
+}
+
+summary {
+  cursor: pointer;
 }

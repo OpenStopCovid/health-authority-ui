@@ -50,6 +50,48 @@
             (expire dans <span id="qr-code-expiry">1 heure</span>)
           </div>
 
+          <details>
+            <summary
+              >Le patient ne peut pas immédiatement flasher ce QR code avec son
+              application StopCovid</summary
+            >
+            <ul>
+              <li>
+                <a
+                  href="#"
+                  title="Imprimer un QR code"
+                  data-behavior="print-qrcode"
+                  >imprimer un QR code</a
+                >
+                que le patient devra flasher dans les 24 heures sur son
+                application mobile StopCovid
+              </li>
+              <li>
+                <a
+                  href="#"
+                  title="Envoyer le QR code par email"
+                  data-behavior="email-qrcode"
+                  >envoyer un QR code par email</a
+                >
+                que le patient devra afficher sur un autre appareil, afin de
+                pouvoir le flasher dans les 24 heures sur son application mobile
+                StopCovid
+              </li>
+              <li>
+                dernier recours : lui
+                <a
+                  href="#"
+                  title="Afficher un code PIN"
+                  data-behavior="display-pincode"
+                  >dicter un code pin à 9 chiffres</a
+                >
+                qui expire au bout d'une minute, qu'il doit entrer immédiatement
+                sur son application mobile StopCovid
+              </li>
+            </ul>
+          </details>
+          <hr />
+
           <p class="section__subtitle">
             <a href="#" class="button large" data-behavior="new-code"
               >nouveau code de validation</a
