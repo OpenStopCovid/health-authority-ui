@@ -1,71 +1,43 @@
-// TODO: use an env variable?
-// const loginURL = "/login";
-const loginURL = "./?auth_token=123456";
-
-let userToken = undefined;
-
 /* EVENT LISTENERS */
 document.addEventListener("click", (event) => {
-  if (event.target.getAttribute("data-behavior") !== "login") return;
-  initiateAuth();
+  if (event.target.getAttribute("data-behavior") !== "generate-code") return;
+  generateCode();
+  displayCode();
   event.preventDefault();
 });
 
 document.addEventListener("click", (event) => {
   if (event.target.getAttribute("data-behavior") !== "new-code") return;
-  refreshCode();
+  generateCode();
+  displayCode();
   event.preventDefault();
 });
 
 document.addEventListener("code-refreshed", (event) => {
   console.log("received code-refreshed event", event);
-  if (!event.detail || !event.detail.pincode || !event.detail.qrcode) return;
-  const { pincode, qrcode } = event.detail;
-  const pincodeEl = document.querySelector("#pin-code");
+  if (!event.detail || !event.detail.qrcode) return;
+  const { qrcode } = event.detail;
   const qrcodeEl = document.querySelector("#qr-code");
-  if (!pincodeEl || !qrcodeEl) return;
-  pincodeEl.textContent = pincode;
+  if (!qrcodeEl) return;
   qrcodeEl.src = qrcode;
-  console.log("refreshed the codes");
+  console.log("refreshed the code");
 });
 
-/* AUTH */
-const initiateAuth = () => {
-  // Redirect to the login URL
-  document.location = loginURL;
-};
+/* PAGES */
 
-const checkLoggedIn = () => {
-  // Parse the search params
-  const searchParams = new URLSearchParams(
-    document.location.search.replace(/\?/, "")
-  );
-  // Update the userToken in memory
-  userToken = searchParams.get("auth_token");
-  if (userToken) {
-    setLoggedIn();
-  }
-};
-
-const setLoggedIn = (userToken) => {
-  // Display the "logged in" screen
-  document.querySelector("#wrapper").className = "logged-in";
-  // Remove the auth-token from the url
-  history.replaceState(null, "", "./");
+const displayCode = () => {
+  document.querySelector("#wrapper").className = "displaying-code";
 };
 
 /* VALIDATION CODES */
 
-const refreshCode = () => {
+const generateCode = () => {
   const event = new CustomEvent("code-refreshed", {
     detail: {
-      pincode: 654321,
-      qrcode: "QR2.png",
+      pincode: 123456,
+      qrcode: "QR.png",
     },
   });
   console.log("firing code-refreshed event");
   document.dispatchEvent(event);
 };
-
-/* MAIN */
-checkLoggedIn();

@@ -1,8 +1,10 @@
-.not-logged-in #validation-code-container {
+section {
   display: none;
 }
-.logged-in #login-container {
-  display: none;
+
+.displaying-home #home,
+.displaying-code #qrcode {
+  display: block;
 }
 
 .code {
@@ -10,11 +12,17 @@
   border-radius: var(--theme-border-radius);
   box-shadow: var(--theme-box-shadow);
   padding: var(--space-s);
-  width: 50%;
 }
 
 .code img {
   display: block;
   margin: 0 auto;
   width: 95%;
+}
+
+a.button,
+a.button:active,
+a.button:focus,
+a.button:visited {
+  margin: 1em 0;
 }

@@ -23,58 +23,38 @@
         </a>
       </div>
     </header>
-    <div class="hero" role="banner">
-      <div class="hero__container">
-        <h1>
-          Générer un code de validation pour leur application de contact tracing
-        </h1>
-        <p>
-          Ce code de validation est à transmettre au patient que vous venez de
-          diagnostiquer covid+, afin qu'il puisse déclarer son statut de malade
-          dans son application de contact tracing.
-        </p>
-      </div>
-    </div>
-    <main role="main" id="wrapper" class="not-logged-in">
-      <section id="login-container" class="section section-grey">
+    <main role="main" id="wrapper" class="displaying-home">
+      <section id="home" class="section section-white">
         <div class="container container-small">
-          <h2 class="section__title">
-            <a href="#" class="button large" data-behavior="login"
-              >Se connecter sur amelipro</a
+          <h1 class="section__title">
+            Générer un code de validation pour l'application de contact tracing
+          </h1>
+          <p class="section__subtitle">
+            Ce code de validation est à transmettre au patient que vous venez de
+            diagnostiquer covid+, afin qu'il puisse déclarer son statut de
+            malade dans son application de contact tracing.
+            <a href="#" class="button large" data-behavior="generate-code"
+              >Générer un code de validation</a
             >
-          </h2>
+          </p>
         </div>
       </section>
-      <section
-        id="validation-code-container"
-        class="section article article__full"
-      >
+      <section id="qrcode" class="section article article__full">
         <div class="container container-small">
           <h2 class="section__title">
-            Voici le code à fournir à votre patient, sous deux formes possibles
-            :
+            Votre patient diagnostiqué covid+ peut maintenant flasher ce QR code
+            sur son application StopCovid :
           </h2>
-          <div class="row">
-            <div class="code">
-              Code pin
-              <h2 id="pin-code">123456</h2>
-              (expire dans <span id="pin-code-expiry">120 secondes</span>)
-            </div>
-
-            <div class="code">
-              QR code
-              <h2><img id="qr-code" src="QR.png" alt="QR Code" /></h2>
-              (expire dans <span id="qr-code-expiry">7 jours</span>)
-            </div>
+          <div class="code">
+            <h2><img id="qr-code" src="QR.png" alt="QR Code" /></h2>
+            (expire dans <span id="qr-code-expiry">1 heure</span>)
           </div>
 
-          <div class="container">
-            <h2 class="section__title">
-              <a href="#" class="button large" data-behavior="new-code"
-                >Générer un code de validation pour un nouveau patient</a
-              >
-            </h2>
-          </div>
+          <p class="section__subtitle">
+            <a href="#" class="button large" data-behavior="new-code"
+              >nouveau code de validation</a
+            >
+          </p>
         </div>
       </section>
     </main>
