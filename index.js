@@ -1,3 +1,8 @@
+/* ENDPOINTS */
+
+const LOGIN_URL = "http://127.0.0.1:5000/login/";
+const LOGOUT_URL = "http://127.0.0.1:5000/logout/";
+
 /* EVENT LISTENERS */
 document.addEventListener("click", (event) => {
   const handlers = {
@@ -103,9 +108,9 @@ const removeLoader = () => {
 /* Login/logout */
 const login = () => {
   // Redirect to the login page
-  document.location = "http://127.0.0.1:5000/login/";
+  document.location = LOGIN_URL;
 };
 
 const logout = () => {
-  document.location = "http://127.0.0.1:5000/logout/";
+  document.location = LOGOUT_URL;
 };
