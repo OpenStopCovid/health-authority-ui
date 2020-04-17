@@ -35,6 +35,7 @@ const displayCode = (event) => {
   if (!qrcodeEl) return;
   qrcodeEl.src = qrcode;
   console.log("refreshed the code");
+  removeLoader();
 };
 
 const displayPincode = (event) => {
@@ -45,28 +46,31 @@ const displayPincode = (event) => {
   if (!pincodeEl) return;
   pincodeEl.textContent = pincode;
   console.log("refreshed the pincode");
+  removeLoader();
 };
 
 /* VALIDATION CODES */
 
-const generateCode = () => {
-  const event = new CustomEvent("code-refreshed", {
+const generateCode = (event) => {
+  setLoading(event.target);
+  const newCodeEvent = new CustomEvent("code-refreshed", {
     detail: {
       qrcode: "QR.png",
     },
   });
   console.log("firing code-refreshed event");
-  document.dispatchEvent(event);
+  document.dispatchEvent(newCodeEvent);
 };
 
-const generatePincode = () => {
-  const event = new CustomEvent("pincode-refreshed", {
+const generatePincode = (event) => {
+  setLoading(event.target);
+  const newPinCodeEvent = new CustomEvent("pincode-refreshed", {
     detail: {
       pincode: 123456,
     },
   });
   console.log("firing pincode-refreshed event");
-  document.dispatchEvent(event);
+  document.dispatchEvent(newPinCodeEvent);
 };
 
 const printCode = () => {
@@ -85,3 +89,11 @@ const loaderImg = document.createElement("img");
 loaderImg.src =
   "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' />";
 loader.appendChild(loaderImg);
+
+const setLoading = (node) => {
+  node.appendChild(loader);
+};
+
+const removeLoader = () => {
+  loader.parentNode.removeChild(loader);
+};
