@@ -1,3 +1,5 @@
+from time import sleep
+
 from flask import Flask, make_response, session, redirect, request, url_for
 
 app = Flask(__name__)
@@ -14,6 +16,7 @@ def home():
 
 @app.route("/user-info/")
 def user_info():
+    sleep(2)
     if "username" in session:
         return {"user": "Dr. Nemo"}
     return make_response("", 401)
@@ -35,3 +38,11 @@ def login():
 def logout():
     session.pop("username", None)
     return redirect(FRONT_URL)
+
+
+@app.after_request
+def after_request(response):
+    header = response.headers
+    header["Access-Control-Allow-Origin"] = "http://127.0.0.1:8080"
+    header["Access-Control-Allow-Credentials"] = "true"
+    return response

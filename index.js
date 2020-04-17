@@ -2,6 +2,7 @@
 
 const LOGIN_URL = "http://127.0.0.1:5000/login/";
 const LOGOUT_URL = "http://127.0.0.1:5000/logout/";
+const USERINFO_URL = "http://127.0.0.1:5000/user-info/";
 
 /* EVENT LISTENERS */
 document.addEventListener("click", (event) => {
@@ -30,6 +31,16 @@ document.addEventListener("pincode-refreshed", (event) => {
   console.log("received pincode-refreshed event", event);
   if (!event.detail || !event.detail.pincode) return;
   displayPincode(event);
+});
+
+document.addEventListener("logged-out", (event) => {
+  console.log("received logged-out event", event);
+  displayLoggedOut(event);
+});
+
+document.addEventListener("logged-in", (event) => {
+  console.log("received logged-in event", event);
+  displayLoggedIn(event);
 });
 
 /* PAGES */
@@ -114,3 +125,29 @@ const login = () => {
 const logout = () => {
   document.location = LOGOUT_URL;
 };
+
+const displayLoggedOut = () => {
+  document.body.className = "display-logged-out";
+};
+
+const displayLoggedIn = () => {
+  document.body.className = "display-logged-in";
+};
+
+/* main */
+const checkLoggedIn = async () => {
+  const response = await fetch(USERINFO_URL, {
+    credentials: "include",
+  });
+  if (response.status !== 200) {
+    const loggedOutEvent = new CustomEvent("logged-out");
+    console.log("firing logged-out event");
+    document.dispatchEvent(loggedOutEvent);
+    return;
+  }
+  const loggedInEvent = new CustomEvent("logged-in");
+  console.log("firing logged-in event");
+  document.dispatchEvent(loggedInEvent);
+};
+
+checkLoggedIn();
