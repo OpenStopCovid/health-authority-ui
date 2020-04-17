@@ -5,6 +5,8 @@ document.addEventListener("click", (event) => {
     "print-code": printCode,
     "email-code": emailCode,
     "generate-pincode": generatePincode,
+    "login-button": login,
+    "logout-button": logout,
   };
   const behavior = event.target.getAttribute("data-behavior");
   const handler = handlers[behavior];
@@ -96,4 +98,14 @@ const setLoading = (node) => {
 
 const removeLoader = () => {
   loader.parentNode.removeChild(loader);
+};
+
+/* Login/logout */
+const login = () => {
+  // Redirect to the login page
+  document.location = "http://127.0.0.1:5000/login/";
+};
+
+const logout = () => {
+  document.location = "http://127.0.0.1:5000/logout/";
 };

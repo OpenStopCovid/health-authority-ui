@@ -21,6 +21,20 @@
         <a class="navbar__home" href="index.html">
           interface médecin pour la génération de codes de validation
         </a>
+        <nav>
+          <ul class="nav__links display-logged-out">
+            <li class="nav__item logged-out">
+              <a href="#" data-behavior="login-button">Se connecter</a>
+            </li>
+            <li class="nav__item logged-in">
+              <div class="dropdown">
+                Connecté
+                <div class="dropdown-content">
+                  <a href="#" data-behavior="logout-button">déconnexion</a>
+                </div>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
     <main role="main" id="wrapper" class="displaying-home">

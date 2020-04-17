@@ -1,3 +1,4 @@
+/* PAGES */
 section {
   display: none;
 }
@@ -8,6 +9,7 @@ section {
   display: block;
 }
 
+/* CODE */
 .code {
   border: 1px solid var(--theme-border-lighter);
   border-radius: var(--theme-border-radius);
@@ -66,4 +68,13 @@ summary {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Login/logout */
+.nav__links li {
+  display: none;
+}
+.display-logged-out .logged-out,
+.display-logged-in .logged-in {
+  display: block;
 }

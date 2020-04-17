@@ -4,6 +4,8 @@ app = Flask(__name__)
 
 app.secret_key = b"very awesomely super secret key that no one knows"
 
+FRONT_URL = "http://127.0.0.1:8080/"
+
 
 @app.route("/")
 def home():
@@ -21,7 +23,7 @@ def user_info():
 def login():
     if request.method == "POST":
         session["username"] = "Dr. Nemo"
-        return redirect(url_for("user_info"))
+        return redirect(FRONT_URL)
     return """
         <form method="post">
             <input type="submit" value="login">
@@ -32,4 +34,4 @@ def login():
 @app.route("/logout/")
 def logout():
     session.pop("username", None)
-    return redirect(url_for("home"))
+    return redirect(FRONT_URL)
