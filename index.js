@@ -33,7 +33,7 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("code-refreshed", (event) => {
   console.log("received code-refreshed event", event);
-  if (!event.detail || !event.detail.qrcode) return;
+  if (!event.detail || !event.detail.code) return;
   displayCode(event);
 });
 
@@ -63,10 +63,9 @@ document.addEventListener("logged-in", (event) => {
 const displayCode = (event) => {
   document.querySelector("#wrapper").className = "displaying-code";
   window.scrollTo(0, 0);
-  const { qrcode } = event.detail;
-  const qrcodeEl = document.querySelector("#qr-code");
-  if (!qrcodeEl) return;
-  qrcodeEl.src = qrcode;
+  const { code } = event.detail;
+  qrcode.clear();
+  qrcode.makeCode(code);
   console.log("refreshed the code");
   removeLoader();
 };
@@ -84,6 +83,9 @@ const displayPincode = (event) => {
 
 /* VALIDATION CODES */
 
+// QRCode instance which will display the codes received as a flashable QRCode
+const qrcode = new QRCode(document.getElementById("qr-code"));
+
 const generateCode = async (event) => {
   setLoading(event.target);
   const response = await authFetch(CREATECODE_URL, {
@@ -96,9 +98,7 @@ const generateCode = async (event) => {
   const content = await response.json();
   console.log("response", content);
   const newCodeEvent = new CustomEvent("code-refreshed", {
-    detail: {
-      qrcode: "QR.png",
-    },
+    detail: content,
   });
   console.log("firing code-refreshed event");
   document.dispatchEvent(newCodeEvent);
