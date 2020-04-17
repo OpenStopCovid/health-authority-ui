@@ -1,3 +1,4 @@
+from random import randint
 from time import sleep
 
 from flask import Flask, json, make_response, session, redirect, request, url_for
@@ -54,6 +55,8 @@ def logout():
 @app.route("/create-code/", methods=["POST"])
 def create_code():
     print("create-code body", request.json)
+    # A random number of 9 digits.
+    code = str(randint(0, 999999999)).rjust(9, "0")
     return json.jsonify(
-        {"type": "qrcode", "code": "123456", "expireAt": "12345", "ttl": "120"}
+        {"type": "qrcode", "code": code, "expireAt": "12345", "ttl": "120"}
     )
