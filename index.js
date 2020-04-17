@@ -77,3 +77,11 @@ const emailCode = () => {
   location.href =
     "mailto:sick-person@example.com?subject=QR Code à flasher sur votre application mobile StopCovid";
 };
+
+/* Loader */
+const loader = document.createElement("span");
+loader.className = "loader";
+const loaderImg = document.createElement("img");
+loaderImg.src =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' />";
+loader.appendChild(loaderImg);

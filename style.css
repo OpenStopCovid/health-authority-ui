@@ -36,3 +36,34 @@ hr {
 summary {
   cursor: pointer;
 }
+
+/* Loader */
+.loader {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  height: 100%;
+  left: 0;
+  opacity: 0.9;
+  position: absolute;
+  justify-content: center;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.loader img,
+.loader video {
+  animation: loader 1.2s linear infinite;
+  border: 6px solid var(--theme-border);
+  border-color: var(--theme-border) transparent var(--theme-border) transparent;
+  border-radius: 50%;
+  height: 50%;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
