@@ -114,11 +114,15 @@ loaderImg.src =
 loader.appendChild(loaderImg);
 
 const setLoading = (node) => {
-  node.appendChild(loader);
+  const loaderNode = loader.cloneNode(true);
+  node.appendChild(loaderNode);
 };
 
 const removeLoader = () => {
-  loader.parentNode.removeChild(loader);
+  const loaderNodes = document.querySelectorAll(".loader");
+  const parents = Array.from(loaderNodes).map((loaderNode) => {
+    loaderNode.parentNode.removeChild(loaderNode);
+  });
 };
 
 /* Login/logout */
