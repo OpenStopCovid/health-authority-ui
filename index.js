@@ -39,7 +39,7 @@ document.addEventListener("code-refreshed", (event) => {
 
 document.addEventListener("pincode-refreshed", (event) => {
   console.log("received pincode-refreshed event", event);
-  if (!event.detail || !event.detail.pincode) return;
+  if (!event.detail || !event.detail.code) return;
   displayPincode(event);
 });
 
@@ -73,10 +73,10 @@ const displayCode = (event) => {
 const displayPincode = (event) => {
   document.querySelector("#wrapper").className = "displaying-pincode";
   window.scrollTo(0, 0);
-  const { pincode } = event.detail;
+  const { code } = event.detail;
   const pincodeEl = document.querySelector("#pin-code");
   if (!pincodeEl) return;
-  pincodeEl.textContent = pincode;
+  pincodeEl.textContent = code;
   console.log("refreshed the pincode");
   removeLoader();
 };
@@ -116,9 +116,7 @@ const generatePincode = async (event) => {
   const content = await response.json();
   console.log("response", content);
   const newPinCodeEvent = new CustomEvent("pincode-refreshed", {
-    detail: {
-      pincode: 123456,
-    },
+    detail: content,
   });
   console.log("firing pincode-refreshed event");
   document.dispatchEvent(newPinCodeEvent);
