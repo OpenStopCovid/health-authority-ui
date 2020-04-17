@@ -33,6 +33,11 @@ document.addEventListener("pincode-refreshed", (event) => {
   displayPincode(event);
 });
 
+document.addEventListener("logging-in", (event) => {
+  console.log("received logging-in event", event);
+  setLoginLoader();
+});
+
 document.addEventListener("logged-out", (event) => {
   console.log("received logged-out event", event);
   displayLoggedOut(event);
@@ -117,6 +122,16 @@ const removeLoader = () => {
 };
 
 /* Login/logout */
+const setLoginLoader = () => {
+  const loginButtons = document.querySelectorAll(
+    "[data-behavior=login-button]"
+  );
+  Array.from(loginButtons).map((button) => {
+    console.log("setLoading", button);
+    setLoading(button);
+  });
+};
+
 const login = () => {
   // Redirect to the login page
   document.location = LOGIN_URL;
@@ -128,14 +143,20 @@ const logout = () => {
 
 const displayLoggedOut = () => {
   document.body.className = "display-logged-out";
+  removeLoader();
 };
 
 const displayLoggedIn = () => {
   document.body.className = "display-logged-in";
+  removeLoader();
 };
 
 /* main */
 const checkLoggedIn = async () => {
+  const loggingInEvent = new CustomEvent("logging-in");
+  console.log("firing logging-in event");
+  document.dispatchEvent(loggingInEvent);
+
   const response = await fetch(USERINFO_URL, {
     credentials: "include",
   });
