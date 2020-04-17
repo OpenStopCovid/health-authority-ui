@@ -38,7 +38,9 @@
       </div>
     </header>
     <main role="main" id="wrapper" class="displaying-home">
+      <!-- each section is a different "page" -->
       <section id="home" class="section section-white">
+        <!-- home page: display a button to login, or a button to generate a code if already logged in -->
         <div class="container container-small">
           <h1 class="section__title">
             Générer un code de validation pour l'application de contact tracing
@@ -57,6 +59,7 @@
         </div>
       </section>
       <section id="qrcode" class="section article article__full">
+        <!-- qrcode page: display the qrcode retrieved from the backend, and a few other options if the patient can't flash straigh away -->
         <div class="container container-small">
           <h2 class="section__title">
             Votre patient diagnostiqué covid+ peut maintenant flasher ce QR code
@@ -117,6 +120,7 @@
         </div>
       </section>
       <section id="pincode" class="section section-white">
+        <!-- pincode page: display a pincode that the physician should read out loud to the patient -->
         <div class="container container-small">
           <h1 class="section__title" id="pin-code">
             123456789
