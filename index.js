@@ -4,6 +4,16 @@ const LOGIN_URL = "http://127.0.0.1:5000/login/";
 const LOGOUT_URL = "http://127.0.0.1:5000/logout/";
 const USERINFO_URL = "http://127.0.0.1:5000/user-info/";
 
+const QRCODE_URL = "http://127.0.0.1:5000/create-code/";
+
+/* UTILS */
+const authFetch = async (url, options) => {
+  return fetch(url, {
+    credentials: "include",
+    ...options,
+  });
+};
+
 /* EVENT LISTENERS */
 document.addEventListener("click", (event) => {
   const handlers = {
@@ -74,8 +84,13 @@ const displayPincode = (event) => {
 
 /* VALIDATION CODES */
 
-const generateCode = (event) => {
+const generateCode = async (event) => {
   setLoading(event.target);
+  const response = await authFetch(QRCODE_URL, {
+    method: "POST",
+    body: { emitter: "doctor", type: "qrcode" },
+  });
+  console.log("response", response);
   const newCodeEvent = new CustomEvent("code-refreshed", {
     detail: {
       qrcode: "QR.png",
@@ -161,9 +176,7 @@ const checkLoggedIn = async () => {
   console.log("firing logging-in event");
   document.dispatchEvent(loggingInEvent);
 
-  const response = await fetch(USERINFO_URL, {
-    credentials: "include",
-  });
+  const response = await authFetch(USERINFO_URL);
   if (response.status !== 200) {
     const loggedOutEvent = new CustomEvent("logged-out");
     console.log("firing logged-out event");
