@@ -4,7 +4,7 @@ const LOGIN_URL = "http://127.0.0.1:5000/login/";
 const LOGOUT_URL = "http://127.0.0.1:5000/logout/";
 const USERINFO_URL = "http://127.0.0.1:5000/user-info/";
 
-const QRCODE_URL = "http://127.0.0.1:5000/create-code/";
+const CREATECODE_URL = "http://127.0.0.1:5000/create-code/";
 
 /* UTILS */
 const authFetch = async (url, options) => {
@@ -86,11 +86,15 @@ const displayPincode = (event) => {
 
 const generateCode = async (event) => {
   setLoading(event.target);
-  const response = await authFetch(QRCODE_URL, {
+  const response = await authFetch(CREATECODE_URL, {
     method: "POST",
-    body: { emitter: "doctor", type: "qrcode" },
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ emitter: "doctor", type: "qrcode" }),
   });
-  console.log("response", response);
+  const content = await response.json();
+  console.log("response", content);
   const newCodeEvent = new CustomEvent("code-refreshed", {
     detail: {
       qrcode: "QR.png",
@@ -100,8 +104,17 @@ const generateCode = async (event) => {
   document.dispatchEvent(newCodeEvent);
 };
 
-const generatePincode = (event) => {
+const generatePincode = async (event) => {
   setLoading(event.target);
+  const response = await authFetch(CREATECODE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ emitter: "doctor", type: "pincode" }),
+  });
+  const content = await response.json();
+  console.log("response", content);
   const newPinCodeEvent = new CustomEvent("pincode-refreshed", {
     detail: {
       pincode: 123456,

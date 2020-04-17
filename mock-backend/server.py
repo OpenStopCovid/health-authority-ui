@@ -12,11 +12,12 @@ FRONT_URL = "http://127.0.0.1:8080/"
 @app.after_request
 def after_request(response):
     # Fake network delay.
-    sleep(2)
+    sleep(0.5)
     # Add CORS.
     header = response.headers
     header["Access-Control-Allow-Origin"] = "http://127.0.0.1:8080"
     header["Access-Control-Allow-Credentials"] = "true"
+    header["Access-Control-Allow-Headers"] = "content-type"
     return response
 
 
@@ -28,7 +29,7 @@ def home():
 @app.route("/user-info/")
 def user_info():
     if "username" in session:
-        return {"user": "Dr. Nemo"}
+        return json.jsonify({"user": "Dr. Nemo"})
     return make_response("", 401)
 
 
@@ -52,6 +53,7 @@ def logout():
 
 @app.route("/create-code/", methods=["POST"])
 def create_code():
+    print("create-code body", request.json)
     return json.jsonify(
         {"type": "qrcode", "code": "123456", "expireAt": "12345", "ttl": "120"}
     )
