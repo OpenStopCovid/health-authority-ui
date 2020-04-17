@@ -71,7 +71,8 @@ summary {
 }
 
 /* Login/logout */
-.nav__links li {
+.logged-out,
+.logged-in {
   display: none;
 }
 .display-logged-out .logged-out,
