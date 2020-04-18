@@ -34,18 +34,12 @@ document.addEventListener("logged-in", (event) => {
 
 // QRCode instance which will display the codes received as a flashable QRCode
 const qrcode = new QRCode(document.getElementById("qr-code"));
-const qrcodeLab = new QRCode(document.getElementById("qr-code-lab"));
 
 const generateCode = async (event, type, emitter) => {
   event.preventDefault();
   setLoading(event.target);
   const codeData = await getCode(type, emitter);
-  const displayer =
-    type === "qrcode"
-      ? emitter === "doctor"
-        ? displayCode
-        : displayCodeLab
-      : displayPincode;
+  const displayer = type === "qrcode" ? displayCode : displayPincode;
   displayer(codeData);
   removeLoader();
   document.location = event.target.href;
@@ -71,18 +65,6 @@ const displayCode = (codeData) => {
   const date = new Date(expireAt).toLocaleString();
   const expiry = document.querySelector(
     "#qrcode [data-behavior=qr-code-expiry]"
-  );
-  expiry.textContent = date;
-  console.log("refreshed the code");
-};
-
-const displayCodeLab = (codeData) => {
-  const { code, expireAt } = codeData;
-  qrcodeLab.clear();
-  qrcodeLab.makeCode(code);
-  const date = new Date(expireAt).toLocaleString();
-  const expiry = document.querySelector(
-    "#qrcode-lab [data-behavior=qr-code-expiry]"
   );
   expiry.textContent = date;
   console.log("refreshed the code");
