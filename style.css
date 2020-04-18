@@ -3,9 +3,12 @@ section {
   display: none;
 }
 
-.displaying-home #home,
+/* .displaying-home #home,
 .displaying-code #qrcode,
 .displaying-pincode #pincode {
+  display: block;
+} */
+section:target {
   display: block;
 }
 

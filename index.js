@@ -15,23 +15,6 @@ const authFetch = async (url, options) => {
 };
 
 /* EVENT LISTENERS */
-document.addEventListener("click", (event) => {
-  const handlers = {
-    "generate-code": generateCode,
-    "print-code": printCode,
-    "email-code": emailCode,
-    "generate-pincode": generatePincode,
-    "login-button": login,
-    "logout-button": logout,
-    "back-home": displayHome,
-  };
-  const behavior = event.target.getAttribute("data-behavior");
-  const handler = handlers[behavior];
-  if (!handler) return;
-  event.preventDefault();
-  handler(event);
-});
-
 document.addEventListener("code-refreshed", (event) => {
   console.log("received code-refreshed event", event);
   if (!event.detail || !event.detail.code) return;
@@ -44,8 +27,8 @@ document.addEventListener("pincode-refreshed", (event) => {
   displayPincode(event);
 });
 
-document.addEventListener("logging-in", (event) => {
-  console.log("received logging-in event", event);
+document.addEventListener("checking-login", (event) => {
+  console.log("received checking-login event", event);
   setLoginLoader();
 });
 
@@ -61,16 +44,8 @@ document.addEventListener("logged-in", (event) => {
 
 /* PAGES */
 
-const displayHome = (event) => {
-  document.querySelector("#wrapper").className = "displaying-home";
-  window.scrollTo(0, 0);
-  removeLoader();
-};
-
-const displayCode = (event) => {
-  document.querySelector("#wrapper").className = "displaying-code";
-  window.scrollTo(0, 0);
-  const { code } = event.detail;
+const displayCode = (codeData) => {
+  const { code } = codeData;
   qrcode.clear();
   qrcode.makeCode(code);
   console.log("refreshed the code");
@@ -78,8 +53,6 @@ const displayCode = (event) => {
 };
 
 const displayPincode = (event) => {
-  document.querySelector("#wrapper").className = "displaying-pincode";
-  window.scrollTo(0, 0);
   const { code } = event.detail;
   const pincodeEl = document.querySelector("#pin-code");
   if (!pincodeEl) return;
@@ -94,6 +67,7 @@ const displayPincode = (event) => {
 const qrcode = new QRCode(document.getElementById("qr-code"));
 
 const generateCode = async (event) => {
+  event.preventDefault();
   setLoading(event.target);
   const response = await authFetch(CREATECODE_URL, {
     method: "POST",
@@ -103,37 +77,12 @@ const generateCode = async (event) => {
     body: JSON.stringify({ emitter: "doctor", type: "qrcode" }),
   });
   const content = await response.json();
-  console.log("response", content);
-  const newCodeEvent = new CustomEvent("code-refreshed", {
-    detail: content,
-  });
-  console.log("firing code-refreshed event");
-  document.dispatchEvent(newCodeEvent);
+  displayCode(content);
+  document.location = event.target.href;
 };
 
-const generatePincode = async (event) => {
-  setLoading(event.target);
-  const response = await authFetch(CREATECODE_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ emitter: "doctor", type: "pincode" }),
-  });
-  const content = await response.json();
-  console.log("response", content);
-  const newPinCodeEvent = new CustomEvent("pincode-refreshed", {
-    detail: content,
-  });
-  console.log("firing pincode-refreshed event");
-  document.dispatchEvent(newPinCodeEvent);
-};
-
-const printCode = () => {
-  window.print();
-};
-
-const emailCode = () => {
+const emailCode = (event) => {
+  event.preventDefault();
   location.href =
     "mailto:sick-person@example.com?subject=QR Code à flasher sur votre application mobile StopCovid";
 };
@@ -169,12 +118,15 @@ const setLoginLoader = () => {
   });
 };
 
-const login = () => {
+const login = (event) => {
+  event.preventDefault();
   // Redirect to the login page
   document.location = LOGIN_URL;
 };
 
 const logout = () => {
+  event.preventDefault();
+  // Redirect to the logout page
   document.location = LOGOUT_URL;
 };
 
@@ -185,13 +137,14 @@ const displayLoggedOut = () => {
 
 const displayLoggedIn = () => {
   document.body.className = "display-logged-in";
+  document.location.hash = "home";
   removeLoader();
 };
 
 /* main */
 const checkLoggedIn = async () => {
-  const loggingInEvent = new CustomEvent("logging-in");
-  console.log("firing logging-in event");
+  const loggingInEvent = new CustomEvent("checking-login");
+  console.log("firing checking-login event");
   document.dispatchEvent(loggingInEvent);
 
   const response = await authFetch(USERINFO_URL);
