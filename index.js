@@ -94,7 +94,7 @@ const displayPincode = (codeData) => {
   pincodeEl.textContent = code;
   const date = new Date(expireAt);
   const now = new Date();
-  const diff = (date - now) / 1000; // Number of seconds
+  const diff = Math.round((date - now) / 1000); // Number of seconds
   const pincodeExpiryEl = document.querySelector(
     "#pincode [data-behavior=pincode-expiry]"
   );
