@@ -42,43 +42,59 @@ document.addEventListener("logged-in", (event) => {
   displayLoggedIn(event);
 });
 
-/* PAGES */
-
-const displayCode = (codeData) => {
-  const { code } = codeData;
-  qrcode.clear();
-  qrcode.makeCode(code);
-  console.log("refreshed the code");
-  removeLoader();
-};
-
-const displayPincode = (event) => {
-  const { code } = event.detail;
-  const pincodeEl = document.querySelector("#pin-code");
-  if (!pincodeEl) return;
-  pincodeEl.textContent = code;
-  console.log("refreshed the pincode");
-  removeLoader();
-};
-
 /* VALIDATION CODES */
 
 // QRCode instance which will display the codes received as a flashable QRCode
 const qrcode = new QRCode(document.getElementById("qr-code"));
+const qrcodeLab = new QRCode(document.getElementById("qr-code-lab"));
 
-const generateCode = async (event) => {
+const generateCode = async (event, type, emitter) => {
   event.preventDefault();
   setLoading(event.target);
+  const codeData = await getCode(type, emitter);
+  const displayer =
+    type === "qrcode"
+      ? emitter === "doctor"
+        ? displayCode
+        : displayCodeLab
+      : displayPincode;
+  displayer(codeData);
+  removeLoader();
+  document.location = event.target.href;
+};
+
+const getCode = async (type, emitter) => {
+  // Get the code data from the backend.
   const response = await authFetch(CREATECODE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ emitter: "doctor", type: "qrcode" }),
+    body: JSON.stringify({ emitter, type }),
   });
   const content = await response.json();
-  displayCode(content);
-  document.location = event.target.href;
+  return content;
+};
+
+const displayCode = (codeData) => {
+  const { code, expireAt } = codeData;
+  qrcode.clear();
+  qrcode.makeCode(code);
+  console.log("refreshed the code");
+};
+
+const displayCodeLab = (codeData) => {
+  const { code, expireAt } = codeData;
+  qrcodeLab.clear();
+  qrcodeLab.makeCode(code);
+  console.log("refreshed the code");
+};
+
+const displayPincode = (codeData) => {
+  const { code, expireAt } = codeData;
+  const pincodeEl = document.querySelector("#pin-code");
+  pincodeEl.textContent = code;
+  console.log("refreshed the pincode");
 };
 
 const emailCode = (event) => {
@@ -113,7 +129,6 @@ const setLoginLoader = () => {
     "[data-behavior=login-button]"
   );
   Array.from(loginButtons).map((button) => {
-    console.log("setLoading", button);
     setLoading(button);
   });
 };
@@ -144,18 +159,15 @@ const displayLoggedIn = () => {
 /* main */
 const checkLoggedIn = async () => {
   const loggingInEvent = new CustomEvent("checking-login");
-  console.log("firing checking-login event");
   document.dispatchEvent(loggingInEvent);
 
   const response = await authFetch(USERINFO_URL);
   if (response.status !== 200) {
     const loggedOutEvent = new CustomEvent("logged-out");
-    console.log("firing logged-out event");
     document.dispatchEvent(loggedOutEvent);
     return;
   }
   const loggedInEvent = new CustomEvent("logged-in");
-  console.log("firing logged-in event");
   document.dispatchEvent(loggedInEvent);
 };
 
