@@ -58,5 +58,10 @@ def create_code():
     # A random number of 9 digits.
     code = str(randint(0, 999999999)).rjust(9, "0")
     return json.jsonify(
-        {"type": "qrcode", "code": code, "expireAt": "12345", "ttl": "120"}
+        {
+            "type": "qrcode",
+            "code": "49f38a3f-c0ab-4127-8e16-ccfd1fb7772e",
+            "expireAt": "2020-04-17T13:21:01.995Z",
+            "ttl": 3600,
+        }
     )
