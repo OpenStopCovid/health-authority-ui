@@ -18,13 +18,15 @@
   <body class="display-logged-out">
     <header class="navbar" role="navigation">
       <div class="navbar__container">
-        <a class="navbar__home" href="index.html">
+        <a class="navbar__home" href="/" data-behavior="back-home">
           interface médecin pour la génération de codes de validation
         </a>
         <nav>
           <ul class="nav__links">
             <li class="nav__item logged-out">
-              <a href="#" class="button" data-behavior="login-button">Se connecter</a>
+              <a href="#" class="button" data-behavior="login-button"
+                >Se connecter</a
+              >
             </li>
             <li class="nav__item logged-in">
               <div class="dropdown">
@@ -32,6 +34,7 @@
                 <div class="dropdown-content">
                   <a href="#" data-behavior="logout-button">déconnexion</a>
                 </div>
+              </div>
             </li>
           </ul>
         </nav>
@@ -39,9 +42,10 @@
     </header>
     <main role="main" id="wrapper" class="displaying-home">
       <!-- each section is a different "page" -->
+
       <section id="home" class="section section-white">
         <!-- home page: display a button to login, or a button to generate a code if already logged in -->
-        <div class="container container-small">
+        <div class="container container">
           <h1 class="section__title">
             Générer un code de validation pour l'application de contact tracing
           </h1>
@@ -50,14 +54,62 @@
             diagnostiquer covid+, afin qu'il puisse déclarer son statut de
             malade dans son application de contact tracing.
           </p>
-          <div class="section__subtitle logged-in">
-          <a href="#" class="button large logged-in" data-behavior="generate-code">Générer un code de validation</a>
+          <div class="row logged-in">
+            <div class="card">
+              <div class="card__content">
+                <h3>QRCode à flasher immédiatement</h3>
+                <p>
+                  Un QRCode que votre patient diagnostiqué covid+ flashe sur le
+                  champ avec son application mobile StopCovid.
+                </p>
+              </div>
+              <div class="card__extra">
+                <a href="#" class="button" data-behavior="generate-code"
+                  >Générer un code de courte durée</a
+                >
+              </div>
+            </div>
+            <div class="card">
+              <div class="card__content">
+                <h3>QRCode à imprimer ou envoyer par email</h3>
+                <p>
+                  Un QRCode que votre patient diagnostiqué covid+ pourra flasher
+                  ultérieurement. Si il est envoyé par mail, il nécessitera
+                  l'affichage sur un autre appareil que celui sur lequel
+                  l'application mobile StopCovid est installé, afin de le
+                  flasher.
+                </p>
+              </div>
+              <div class="card__extra">
+                <a href="#" class="button" data-behavior="generate-code"
+                  >Générer un code de longue durée</a
+                >
+              </div>
+            </div>
+            <div class="card">
+              <div class="card__content">
+                <h3>PinCode à dicter immédiatement</h3>
+                <p>
+                  En dernier recours, un code à 9 chiffres à dicter à votre
+                  patient diagnostiqué covid+ qu'il entrera sur son application
+                  mobile StopCovid.
+                </p>
+              </div>
+              <div class="card__extra">
+                <a href="#" class="button" data-behavior="generate-pincode"
+                  >Générer un PinCode valable 2 minutes</a
+                >
+              </div>
+            </div>
           </div>
           <div class="section__subtitle logged-out">
-          <a href="#" data-behavior="login-button" class="button large logged-out">Se connecter pour générer un code de validation</a>
+            <a href="#" data-behavior="login-button" class="button"
+              >Se connecter pour générer un code de validation</a
+            >
           </div>
         </div>
       </section>
+
       <section id="qrcode" class="section article article__full">
         <!-- qrcode page: display the qrcode retrieved from the backend, and a few other options if the patient can't flash straigh away -->
         <div class="container container-small">
@@ -97,18 +149,18 @@
                 StopCovid
               </li>
               <li>
-                dernier recours : lui dicter un code pin à 9 chiffres
-                qui expire au bout d'une minute, qu'il doit entrer immédiatement
-                sur son application mobile StopCovid
+                dernier recours : lui dicter un code pin à 9 chiffres qui expire
+                au bout d'une minute, qu'il doit entrer immédiatement sur son
+                application mobile StopCovid
               </li>
             </ul>
-                <a
-                  href="#"
-                  title="Afficher un code PIN"
-                  class="button"
-                  data-behavior="generate-pincode"
-                  >générer un code pin à 9 chiffres</a
-                >
+            <a
+              href="#"
+              title="Afficher un code PIN"
+              class="button"
+              data-behavior="generate-pincode"
+              >générer un code pin à 9 chiffres</a
+            >
           </details>
           <hr />
 
@@ -117,8 +169,14 @@
               >nouveau patient</a
             >
           </p>
+          <p>
+            <a href="/" data-behavior="back-home">
+              retour à l'accueil
+            </a>
+          </p>
         </div>
       </section>
+
       <section id="pincode" class="section section-white">
         <!-- pincode page: display a pincode that the physician should read out loud to the patient -->
         <div class="container container-small">
@@ -133,13 +191,19 @@
           <hr />
 
           <p class="section__subtitle">
-            <a href="#" class="button large" data-behavior="generate-code"
+            <a href="#" class="button large" data-behavior="generate-pincode"
               >nouveau patient</a
             >
+          </p>
+          <p>
+            <a href="/" data-behavior="back-home">
+              retour à l'accueil
+            </a>
           </p>
         </div>
       </section>
     </main>
+
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer__logo">

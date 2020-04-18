@@ -53,8 +53,7 @@ summary {
   width: 100%;
   z-index: 9999;
 }
-.loader img,
-.loader video {
+.loader img {
   animation: loader 1.2s linear infinite;
   border: 6px solid var(--theme-border);
   border-color: var(--theme-border) transparent var(--theme-border) transparent;
@@ -77,5 +76,12 @@ summary {
 }
 .display-logged-out .logged-out,
 .display-logged-in .logged-in {
-  display: block;
+  display: flex;
+  justify-content: center;
+}
+
+/* Cards */
+.card__extra {
+  border-top: none;
+  text-align: center;
 }

@@ -23,6 +23,7 @@ document.addEventListener("click", (event) => {
     "generate-pincode": generatePincode,
     "login-button": login,
     "logout-button": logout,
+    "back-home": displayHome,
   };
   const behavior = event.target.getAttribute("data-behavior");
   const handler = handlers[behavior];
@@ -59,6 +60,12 @@ document.addEventListener("logged-in", (event) => {
 });
 
 /* PAGES */
+
+const displayHome = (event) => {
+  document.querySelector("#wrapper").className = "displaying-home";
+  window.scrollTo(0, 0);
+  removeLoader();
+};
 
 const displayCode = (event) => {
   document.querySelector("#wrapper").className = "displaying-code";
