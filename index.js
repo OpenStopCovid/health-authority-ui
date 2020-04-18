@@ -68,6 +68,11 @@ const displayCode = (codeData) => {
   const { code, expireAt } = codeData;
   qrcode.clear();
   qrcode.makeCode(code);
+  const date = new Date(expireAt).toLocaleString();
+  const expiry = document.querySelector(
+    "#qrcode [data-behavior=qr-code-expiry]"
+  );
+  expiry.textContent = date;
   console.log("refreshed the code");
 };
 
@@ -75,6 +80,11 @@ const displayCodeLab = (codeData) => {
   const { code, expireAt } = codeData;
   qrcodeLab.clear();
   qrcodeLab.makeCode(code);
+  const date = new Date(expireAt).toLocaleString();
+  const expiry = document.querySelector(
+    "#qrcode-lab [data-behavior=qr-code-expiry]"
+  );
+  expiry.textContent = date;
   console.log("refreshed the code");
 };
 
@@ -82,6 +92,13 @@ const displayPincode = (codeData) => {
   const { code, expireAt } = codeData;
   const pincodeEl = document.querySelector("#pin-code");
   pincodeEl.textContent = code;
+  const date = new Date(expireAt);
+  const now = new Date();
+  const diff = (date - now) / 1000; // Number of seconds
+  const pincodeExpiryEl = document.querySelector(
+    "#pincode [data-behavior=pincode-expiry]"
+  );
+  pincodeExpiryEl.textContent = Math.max(0, diff);
   console.log("refreshed the pincode");
 };
 
