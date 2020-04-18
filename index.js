@@ -15,30 +15,18 @@ const authFetch = async (url, options) => {
 };
 
 /* EVENT LISTENERS */
-document.addEventListener("code-refreshed", (event) => {
-  console.log("received code-refreshed event", event);
-  if (!event.detail || !event.detail.code) return;
-  displayCode(event);
-});
-
-document.addEventListener("pincode-refreshed", (event) => {
-  console.log("received pincode-refreshed event", event);
-  if (!event.detail || !event.detail.code) return;
-  displayPincode(event);
-});
-
 document.addEventListener("checking-login", (event) => {
-  console.log("received checking-login event", event);
+  console.log("received checking-login event");
   setLoginLoader();
 });
 
 document.addEventListener("logged-out", (event) => {
-  console.log("received logged-out event", event);
+  console.log("received logged-out event");
   displayLoggedOut(event);
 });
 
 document.addEventListener("logged-in", (event) => {
-  console.log("received logged-in event", event);
+  console.log("received logged-in event");
   displayLoggedIn(event);
 });
 
