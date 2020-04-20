@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 app.secret_key = b"very awesomely super secret key that no one knows"
 
-FRONT_URL = "http://127.0.0.1:8080/"
+FRONT_URL = "http://localhost:8080"
 
 
 @app.after_request
@@ -18,7 +18,7 @@ def after_request(response):
     sleep(0.5)
     # Add CORS.
     header = response.headers
-    header["Access-Control-Allow-Origin"] = "http://127.0.0.1:8080"
+    header["Access-Control-Allow-Origin"] = FRONT_URL
     header["Access-Control-Allow-Credentials"] = "true"
     header["Access-Control-Allow-Headers"] = "content-type"
     return response

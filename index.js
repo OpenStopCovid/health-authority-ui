@@ -1,10 +1,12 @@
 /* ENDPOINTS */
 
-const LOGIN_URL = "http://127.0.0.1:5000/login/";
-const LOGOUT_URL = "http://127.0.0.1:5000/logout/";
-const USERINFO_URL = "http://127.0.0.1:5000/user-info/";
+const LOGIN_URL = "http://localhost:5000/login/";
+const LOGOUT_URL = "http://localhost:5000/logout/";
+const USERINFO_URL = "http://localhost:5000/user-info/";
 
-const CREATECODE_URL = "http://127.0.0.1:5000/create-code/";
+// const CREATECODE_URL = "http://localhost:5000/create-code/";
+// real backend.
+const CREATECODE_URL = "http://localhost:5002/create-code";
 
 /* UTILS */
 const authFetch = async (url, options) => {
