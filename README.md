@@ -5,7 +5,7 @@ patients, so they can declare themselves as covid+ in their app.
 
 This user interface is tailored to be used in front of a backend architecture
 for _decentralized contact tracing_, such as
-[dp3t-ms](https://github.com/jdesboeufs/dp3t-ms).
+[dp3t-ms](https://github.com/jdesboeufs/dp3t-ms), and is written in french.
 
 The user interface will require the following API endpoints accessible:
 
@@ -31,6 +31,11 @@ The URLs to the API endpoints are listed at the top of the `index.js` file.
 You can use a simple http server like
 [live-server](https://www.npmjs.com/package/live-server) to have live
 reloading, or `python3 -m http.server`.
+
+Make sure to access the front-end with the following URL, or change the
+`FRONT_URL` accordingly in `mock-backend/server.py`:
+
+http://localhost:8080
 
 ### Mock backend
 
