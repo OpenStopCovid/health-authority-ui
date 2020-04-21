@@ -1,12 +1,11 @@
 /* ENDPOINTS */
 
+// TODO: those links point to the mock backend in `mock-backend`. Replace them
+// with the propper URLs to your backend.
 const LOGIN_URL = "http://localhost:5000/login/";
 const LOGOUT_URL = "http://localhost:5000/logout/";
 const USERINFO_URL = "http://localhost:5000/user-info/";
-
-// const CREATECODE_URL = "http://localhost:5000/create-code/";
-// real backend.
-const CREATECODE_URL = "http://localhost:5002/create-code";
+const CREATECODE_URL = "http://localhost:5000/create-code/";
 
 /* UTILS */
 const authFetch = async (url, options) => {
