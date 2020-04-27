@@ -4,16 +4,7 @@
 // with the propper URLs to your backend.
 const LOGIN_URL = "http://localhost:5000/login/";
 const LOGOUT_URL = "http://localhost:5000/logout/";
-const USERINFO_URL = "http://localhost:5000/user-info/";
-const CREATECODE_URL = "http://localhost:5000/create-code/";
-
-/* UTILS */
-const authFetch = async (url, options) => {
-  return fetch(url, {
-    credentials: "include",
-    ...options,
-  });
-};
+const CREATECODE_URL = "https://api.openstopcovid.fr/codes/create-code";
 
 /* EVENT LISTENERS */
 document.addEventListener("checking-login", (event) => {
@@ -48,7 +39,7 @@ const generateCode = async (event, type, emitter) => {
 
 const getCode = async (type, emitter) => {
   // Get the code data from the backend.
-  const response = await authFetch(CREATECODE_URL, {
+  const response = await fetch(CREATECODE_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -148,13 +139,6 @@ const displayLoggedIn = () => {
 const checkLoggedIn = async () => {
   const loggingInEvent = new CustomEvent("checking-login");
   document.dispatchEvent(loggingInEvent);
-
-  const response = await authFetch(USERINFO_URL);
-  if (response.status !== 200) {
-    const loggedOutEvent = new CustomEvent("logged-out");
-    document.dispatchEvent(loggedOutEvent);
-    return;
-  }
   const loggedInEvent = new CustomEvent("logged-in");
   document.dispatchEvent(loggedInEvent);
 };
