@@ -1,0 +1,74 @@
+{
+    "fr": {
+        "interface": {
+            "home_label":"Interface médecin pour la génération de codes de validation",
+            "connect_button":"Se connecter",
+            "connect_label":"Se connecter pour générer un code de validation",
+            "connected_label":"Connecté",
+            "disconnect_button":"Déconnexion",
+            "title_label":"Générer un code de validation pour l'application de contact tracing",
+            "subtitle_label":"Ce code de validation est à transmettre au patient que vous venez de diagnostiquer covid+, afin qu'il puisse déclarer son statut de malade dans son application de contact tracing.",
+            "back_button":"retour à l'accueil",
+            "back_button_duplicate":"retour à l'accueil",
+            "flash_label":"QRCode à flasher immédiatement",
+            "flash_description":"Un QRCode que votre patient diagnostiqué covid+ flashe sur le champ avec son application mobile de contact tracing.",
+            "qr_generate_button":"Générer un QRCode",
+            "flash_final_action":"Votre patient diagnostiqué covid+ peut maintenant flasher ce QR code sur son application de contact tracing :",
+            "new_flash":"nouveau QRCode",
+            "dictate_label":"Code PIN à dicter immédiatement",
+            "dictate_description":"En dernier recours, un code à 9 chiffres à dicter à votre patient diagnostiqué covid+ qu'il entrera sur son application mobile de contact tracing.",
+            "pin_generate_button":"Générer un Code PIN",
+            "new_pin":"nouveau code PIN",
+            "BUG-exp_msg":"expire le",
+            "BUG-dictate_final_action":"ICe code PIN de validation est à dicter à votre patient immédiatement. Il expire dans |seconds| seconds"
+        }
+    },
+    "en": {
+        "interface": {
+            "home_label": "Physician interface for validation code generation",
+            "connect_button": "Connect",
+            "connect_label": "Login to generate a validation code",
+            "connected_label": "Connected",
+            "disconnect_button": "Disconnect",
+            "title_label":"Generate a validation code for the contact tracing application",
+            "subtitle_label": "This validation code is to be transmitted to the patient you have just diagnosed covid+, so that he can declare his patient status in his contact tracing application.",
+            "back_button": "return to home",
+            "back_button_duplicate": "back to home",
+            "flash_label": "QRCode to flash immediately",
+            "flash_description": "A QRCode that your covid+ diagnosed patient flashes on the fly with his mobile contact tracing application",
+            "qr_generate_button": "Generate QRCode",
+            "flash_final_action": "Your covid+ diagnosed patient can now flash this QR code on his contact tracing application:",
+            "new_flash":"new QRCode",
+            "dictate_label": "PIN code to be dictated immediately",
+            "dictate_description": "As a last resort, a 9-digit code to dictate to your covid+ diagnosed patient to be entered into their mobile contact tracing application.",
+            "pin_generate_button": "Generate PIN code.",
+            "new_pin": "neew PIN code",
+            "BUG-exp_msg": "expires on",
+            "BUG-dictate_final_action": "This validation PIN is to be dictated to your patient immediately. It expires in |seconds| seconds."
+        }
+    },
+    "de": {
+        "interface": {
+            "home_label": "Arzt-Schnittstelle zur Validierungscode-Generierung",
+            "Verbinden_Schaltfläche": "Verbinden",
+            "connect_label": "Anmelden, um einen Validierungscode zu generieren",
+            "connected_label": "Verbunden",
+            "disconnect_button": "Verbindung trennen",
+            "title_label": "Generieren Sie einen Validierungscode für die Anwendung zur Ermittlung von Kontaktpersonen",
+            "subtitle_label": "Dieser Validierungscode ist dem Patienten, bei dem Sie gerade covid+ diagnostiziert haben, zu übermitteln, damit er seinen Patientenstatus in seiner Anwendung zur Ermittlung von Kontaktpersonen angeben kann",
+            "Zurück_Schaltfläche": "Nach Hause zurückkehren",
+            "back_button_duplicate": "zurück nach Hause",
+            "flash_label": "QRCode soll sofort blinken",
+            "flash_description": "Ein QRCode, den Ihr diagnostizierter covid+-Patient mit seiner mobilen Anwendung zur Ermittlung von Kontaktpersonen on the fly aufblitzt",
+            "qr_generate_button": "QRCode generieren",
+            "flash_final_action": "Ihr diagnostizierter Covid+-Patient kann nun diesen QR-Code auf seiner Anwendung zur Ermittlung von Kontaktpersonen flashen:",
+            "new_flash": "neuer QRCode",
+            "dictate_label": "PIN-Code ist sofort zu diktieren",
+            "dictate_description": "Als letztes Mittel ein 9-stelliger Code, mit dem Sie Ihrem diagnostizierten covid+-Patienten diktieren können, um ihn in seine mobile Anwendung zur Ermittlung von Kontaktpersonen einzugeben",
+            "pin_generate_button": "PIN-Code generieren",
+            "neuer_Pin": "neuer PIN-Code",
+            "BUG-exp_msg": "verfällt am",
+            "BUG-dictate_final_action": "IDieser Validierungs-PIN-Code sollte Ihrem Patienten sofort diktiert werden. Sie läuft in |Sekunden| Sekunden ab"
+            }
+        }
+    }
