@@ -14,19 +14,26 @@
       rel="stylesheet"
     />
     <link href="static/style.css" rel="stylesheet" />
+
+    <!-- i18n library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/19.4.4/i18next.min.js" 
+            integrity="sha256-dOd81sXQI7Sxw7SLXgtiVk1w/HBBkBhJi617uhaZkuc=" 
+            crossorigin="anonymous">
+    </script>
+
   </head>
   <body class="display-logged-out">
     <header class="navbar" role="navigation">
       <div class="navbar__container">
-        <a class="navbar__home" href="/#home">
+        <a data-i18n="interface:home_label" class="navbar__home i18n" href="/#home">
           interface médecin pour la génération de codes de validation
         </a>
         <nav>
           <ul class="nav__links">
             <li class="nav__item logged-out">
-              <a
+              <a data-i18n="interface:connect_button"
                 href="#"
-                class="button"
+                class="button i18n"
                 onclick="login(event)"
                 data-behavior="login-button"
                 >Se connecter</a
@@ -34,9 +41,9 @@
             </li>
             <li class="nav__item logged-in">
               <div class="dropdown">
-                Connecté
+                  <span data-i18n="interface:connected_label" class=" i18n">Connecté</span>
                 <div class="dropdown-content">
-                  <a href="#" onclick="logout(event)">déconnexion</a>
+                  <a data-i18n="interface:disconnect_button" class="i18n" href="#" onclick="logout(event)">déconnexion</a>
                 </div>
               </div>
             </li>
@@ -46,19 +53,19 @@
     </header>
     <main role="main" id="wrapper" class="displaying-home">
       <div class="container container">
-        <h1 class="section__title">
+        <h1 data-i18n="interface:title_label" class="section__title i18n">
           Générer un code de validation pour l'application de contact tracing
         </h1>
-        <p class="section__subtitle">
+        <p data-i18n="interface:subtitle_label" class="section__subtitle i18n">
           Ce code de validation est à transmettre au patient que vous venez de
           diagnostiquer covid+, afin qu'il puisse déclarer son statut de malade
           dans son application de contact tracing.
         </p>
         <div class="section__subtitle logged-out">
-          <a
+          <a data-i18n="interface:connect_label"
             href="#"
             onclick="login(event)"
-            class="button"
+            class="button i18n"
             data-behavior="login-button"
             >Se connecter pour générer un code de validation</a
           >
@@ -72,16 +79,16 @@
           <div class="row logged-in">
             <div class="card">
               <div class="card__content">
-                <h3>QRCode à flasher immédiatement</h3>
-                <p>
+                <h3 data-i18n="interface:flash_label" class="i18n">QRCode à flasher immédiatement</h3>
+                <p data-i18n="interface:flash_description" class="i18n">
                   Un QRCode que votre patient diagnostiqué covid+ flashe sur le
                   champ avec son application mobile de contact tracing.
                 </p>
               </div>
               <div class="card__extra">
-                <a
+                <a data-i18n="interface:qr_generate_button"
                   href="#qrcode"
-                  class="button"
+                  class="button i18n"
                   onclick="generateCode(event, 'qrcode', 'doctor')"
                   >Générer un QRCode</a
                 >
@@ -89,17 +96,17 @@
             </div>
             <div class="card">
               <div class="card__content">
-                <h3>Code PIN à dicter immédiatement</h3>
-                <p>
+                <h3 data-i18n="interface:dictate_label" class="i18n">Code PIN à dicter immédiatement</h3>
+                <p data-i18n="interface:dictate_description" class="i18n">
                   En dernier recours, un code à 9 chiffres à dicter à votre
                   patient diagnostiqué covid+ qu'il entrera sur son application
                   mobile de contact tracing.
                 </p>
               </div>
               <div class="card__extra">
-                <a
+                <a data-i18n="interface:pin_generate_button"
                   href="#pincode"
-                  class="button"
+                  class="button i18n"
                   onclick="generateCode(event, 'pincode', 'doctor')"
                   >Générer un Code PIN</a
                 >
@@ -112,27 +119,27 @@
       <section id="qrcode" class="section article article__full">
         <!-- qrcode page: display the qrcode retrieved from the backend, to be flashed straight away -->
         <div class="container container-small">
-          <h2 class="section__title">
+          <h2 data-i18n="interface:flash_final_action" class="section__title i18n">
             Votre patient diagnostiqué covid+ peut maintenant flasher ce QR code
             sur son application de contact tracing :
           </h2>
           <div class="code">
             <h2 id="qr-code"></h2>
-            expire le <span data-behavior="qr-code-expiry"></span>
+            <span data-i18n-BUG="exp_msg" class="i18n">expire le <span><span data-behavior="qr-code-expiry"></span>
           </div>
 
           <hr />
 
           <p class="section__subtitle">
-            <a
+            <a data-i18n="interface:new_flash"
               href="#qrcode"
-              class="button large"
+              class="button large i18n"
               onclick="generateCode(event, 'qrcode', 'doctor')"
               >nouveau QRCode</a
             >
           </p>
           <p>
-            <a href="/#home">
+            <a data-i18n="interface:back_button" href="/#home" class="i18n">
               retour à l'accueil
             </a>
           </p>
@@ -143,23 +150,23 @@
         <!-- pincode page: display a pincode that the physician should read out loud to the patient -->
         <div class="container container-small">
           <h1 class="section__title" id="pin-code"></h1>
-          <p class="section__subtitle">
+          <p data-i18n-BUG="interface:dictate_final_action"class="section__subtitle data-i18n">
             Ce code PIN de validation est à dicter à votre patient
-            immédiatement. Il expire dans
-            <span data-behavior="pincode-expiry"></span> secondes.
+                immédiatement. Il expire dans
+                <span data-behavior="pincode-expiry"></span> secondes.
           </p>
           <hr />
 
           <p class="section__subtitle">
-            <a
+            <a data-i18n="interface:new_pin"
               href="#pincode"
-              class="button large"
+              class="button large i18n"
               onclick="generateCode(event, 'pincode', 'doctor')"
               >nouveau code PIN</a
             >
           </p>
           <p>
-            <a href="/#home">
+            <a data-i18n="interface:back_button_duplicate" href="/#home" class="i18n">
               retour à l'accueil
             </a>
           </p>
@@ -190,5 +197,61 @@
     </footer>
     <script src="static/qrcode.min.js"></script>
     <script src="static/index.js"></script>
+    <script>
+
+            // https://github.com/supukarmin/navigator-languages#readme
+            const getNavigatorLanguages = function() {
+                if (typeof navigator === 'object') {
+                    var t = 'anguage', n = navigator, f;
+                    f = n['l' + t + 's'];
+                    return f && f.length ? f : (t = n['l' + t] ||
+                        n['browserL' + t] ||
+                        n['userL' + t]) ? [ t ] : t;
+                }
+            };
+
+            let data = {}
+
+            // Use getNavigatorLanguages to determine the favorite language of the user
+            let fav_lang = []
+            getNavigatorLanguages().forEach((lang) => {
+                fav_lang.push(lang)
+            })
+
+            fav_lang.concat(['en']) //force one or more languages to be tried at last
+
+            fetch('lang.json', {mode: 'no-cors'})
+                .then(response => response.text())
+                .then(data=> {
+                    console.log(data)
+                    i18next.init({
+                        lng: fav_lang[0],
+                        fallbackLng: fav_lang, // Force en at last
+                        debug: true,
+                        namespaces: ['interface'],
+                        defaultNS: 'interface',
+                        resources: JSON.parse(data)
+                    }, function(err) {
+
+                        let nodes = document.querySelectorAll(".i18n");
+                        nodes.forEach((node) => {
+                            
+                            let key = node.dataset.i18n
+
+                            if(node.innerHTML) {
+                                node.innerHTML = i18next.t(key) || node.innerHTML
+                            } else if (node.innerText) {
+                                node.innerText = i18next.t(key) ||  node.innerText
+                            }
+                            
+                        });
+
+
+                    });
+
+                })
+                .catch(error => console.error(error));
+
+    </script>
   </body>
 </html>
