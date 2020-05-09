@@ -1,7 +1,6 @@
 import MUI_Login, {MUI_LoginSection} from './login'
 
-
-const SectionTitle = () => {
+const SectionTitle = (props) => {
 
     return (
 
@@ -14,7 +13,7 @@ const SectionTitle = () => {
           diagnostiquer covid+, afin qu'il puisse déclarer son statut de malade
           dans son application de contact tracing.
         </p>
-        <MUI_LoginSection></MUI_LoginSection>
+        <MUI_LoginSection LOGIN_URL={props.LOGIN_URL}></MUI_LoginSection>
       </div>
 
     )

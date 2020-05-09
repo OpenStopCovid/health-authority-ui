@@ -1,30 +1,19 @@
 import Link from 'next/link'
 
-//LOGIN_URL --
-const LOGIN_URL = "http://localhost:5000/login/";
-const login = (event) => {
-  event.preventDefault();
-  // Redirect to the login page
-  document.location = LOGIN_URL;
-};
+const MUI_LoginHead = (props) => {
 
-//LOGOUT_URL --
-const LOGOUT_URL = "http://localhost:5000/logout/";
-const logout = (event) => {
-  event.preventDefault();
-  // Redirect to the logout page
-  document.location = LOGOUT_URL;
-};
+    const login = (event) => {
+        event.preventDefault();
+        // Redirect to the login page
+        document.location = props.LOGIN_URL;
+    };
 
-const MUI_Login = () => {
-    return (
-        <>
-        <MUI_LoginHead></MUI_LoginHead>
-        </>
-    )
-}
+    const logout = (event) => {
+        event.preventDefault();
+        // Redirect to the logout page
+        document.location = props.LOGOUT_URL;
+    };
 
-const MUI_LoginHead = () => {
 
     return (
         <nav>
@@ -54,7 +43,17 @@ const MUI_LoginHead = () => {
     )
 }
 
-const MUI_LoginSection = () => {
+const MUI_LoginSection = (props) => {
+
+    const login = (event) => {
+        event.preventDefault();
+        // Redirect to the login page
+        document.location = props.LOGIN_URL;
+    };
+
+
+    const { t } = useTranslation();
+
     return (
         <div className="section__subtitle logged-out">
           <Link href="#">
@@ -68,7 +67,7 @@ const MUI_LoginSection = () => {
     )
 }
 
-export default MUI_Login
+export default MUI_LoginHead
 export {
     MUI_LoginHead,
     MUI_LoginSection

@@ -8,12 +8,13 @@ const authFetch = async (url, options) => {
   });
 };
 
-class MUI_Main extends React.Component {
+const MUI_Main = (props) => {
 
-    qrcode = undefined
-    loader = undefined
-    USERINFO_URL = "http://localhost:5000/user-info/";
-    CREATECODE_URL = "http://localhost:5000/create-code/";
+    let qrcode = undefined
+    let loader = undefined
+
+    const USERINFO_URL = props.USERINFO_URL;
+    const CREATECODE_URL = props.CREATECODE_URL;
 
     removeLoader = () => {
         const loaderNodes = document.querySelectorAll(".loader");
