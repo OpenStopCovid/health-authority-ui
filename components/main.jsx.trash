@@ -1,0 +1,94 @@
+
+    return (
+
+      <>
+        <section id="home" className="section section-white">
+          <div className="container">
+            <div className="row logged-in">
+              <div className="card">
+                <div className="card__content">
+                  <h3>{t('$flash_label')}</h3>
+                  <p>
+                    {t('$flash_description_part1')}
+                    {t('$flash_description_part2')}.
+                  </p>
+                </div>
+                <div className="card__extra">
+                  <a href="#qrcode"
+                     className="button"
+                     onClick={(event) => ctx.generateCode(event, 'qrcode', 'doctor')}>
+                    {t('$qr_generate_button')}</a>
+                </div>
+              </div>
+              <div className="card">
+                <div className="card__content">
+                  <h3>{t('$dictate_label')}</h3>
+                  <p>
+                    {t('$dictate_description_part1')}
+                    {t('$dictate_description_part2')}
+                    {t('$dictate_description_part3')}.
+                  </p>
+                </div>
+                <div className="card__extra">
+                  <a href="#pincode"
+                     className="button"
+                     onClick={(event) => ctx.generateCode(event, 'pincode', 'doctor')}>{t('$pin_generate_button')}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="qrcode" className="section article article__full">
+          <div className="container container-small">
+            <h2 className="section__title">
+              {t('$flash_final_action_part1')}
+              {t('$flash_final_action_part2')}&nbsp;:
+            </h2>
+            <div className="code">
+              <h2 id="qr-code"></h2>
+              {t('$expire_on')} <span data-behavior="qr-code-expiry"></span>
+            </div>
+
+            <hr />
+
+            <p className="section__subtitle">
+              <a href="#qrcode"
+                 className="button large"
+                 onClick={(event) => ctx.generateCode(event, 'qrcode', 'doctor')}>{t('$new_flash')}</a>
+            </p>
+            <p>
+              <a href="/#home">
+                {t('$back_button')}
+              </a>
+            </p>
+          </div>
+        </section>
+
+        <section id="pincode" className="section section-white">
+          <div className="container container-small">
+            <h1 className="section__title" id="pin-code"></h1>
+            <p className="section__subtitle">
+              {t('$dictate_final_action_part1')}
+              {t('$dictate_final_action_part2')}&nbsp;
+              <span data-behavior="pincode-expiry"></span>&nbsp;{t('$second_plural')}.
+            </p>
+
+            <hr />
+
+            <p className="section__subtitle">
+              <a href="#pincode"
+                 className="button large"
+                 onClick={(event) => ctx.generateCode(event, 'pincode', 'doctor')}>
+                 {t('$new_pin')}</a>
+            </p>
+            <p>
+              <a href="/#home">
+                {t('$back_button')}
+              </a>
+            </p>
+          </div>
+        </section>
+      </>
+
+    )

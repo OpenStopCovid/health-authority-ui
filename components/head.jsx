@@ -1,28 +1,28 @@
 import Head from 'next/head'
+import { useTranslation } from 'react-i18next';
 
 const MUI_Head = () => {
 
+    const { t } = useTranslation();
+
     return (
-        <Head>
-          <title>
-            Interface professionnel de santé | génération d'un code de validation
-          </title>
-          <meta charSet="utf-8" />
-          <meta
-            name="description"
-            content="Génération d'un code de validation à destination des patients diagnostiqué covid-19, afin qu'ils puisse valider leur état de contaminé par le biais de leur application de contact tracing"
-          />
-         <link
-           href="https://unpkg.com/template.data.gouv.fr@1.3.1/dist/main.min.css"
-           rel="stylesheet"
-         />
-         <link href="/style.css" rel="stylesheet" />
+
+      <Head>
+        <title>
+          {t('$home_label')}
+        </title>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content={t('$site_description')}/>
+        <link
+          href="https://unpkg.com/template.data.gouv.fr@1.3.1/dist/main.min.css"
+          rel="stylesheet"/>
+        <link href="/style.css" rel="stylesheet" />
         <script src="qrcode.js"></script>
-       </Head>
+      </Head>
+
     )
 }
-
-
-
 
 export default MUI_Head

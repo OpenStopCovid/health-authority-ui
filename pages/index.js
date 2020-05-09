@@ -8,10 +8,6 @@ import { useState } from "react";
 import { initReactI18next } from "react-i18next";
 import i18n from "i18next";
 
-import en from '../public/locales/en'
-import fr from '../public/locales/fr'
-import de from '../public/locales/de'
-
 //-------- API ENDPOINTS -----------------------------------//
 //LOGIN_URL --
 const LOGIN_URL = "http://localhost:5000/login/";
@@ -24,9 +20,9 @@ const CREATECODE_URL = "http://localhost:5000/create-code/";
 //-------- API ENDPOINTS -----------------------------------//
 
 const lang_pack = {
-    "fr" : fr, // first position == default language
-    "en" : en, // second position == fallback language
-    "de" : de
+    "dummy": {
+        "translation": {}
+    }
 }
 
 i18n

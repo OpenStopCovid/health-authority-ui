@@ -1,13 +1,18 @@
 import Link from 'next/link'
+import { useTranslation, initReactI18next } from 'react-i18next';
 
 const MUI_Title = () => {
 
+    const { t } = useTranslation();
+
     return (
+
           <Link href="/#home">
             <a className="navbar__home">
-            interface médecin pour la génération de codes de validation
+            {t('$home_label')}
             </a>
            </Link>
+
     )
 
 }

@@ -1,17 +1,20 @@
+import { useTranslation } from 'react-i18next';
 import MUI_Login, {MUI_LoginSection} from './login'
 
 const SectionTitle = (props) => {
+
+    const { t } = useTranslation();
 
     return (
 
       <div className="container container">
         <h1 className="section__title">
-          Générer un code de validation pour l'application de contact tracing
+          {t('$title_label')}
         </h1>
         <p className="section__subtitle">
-          Ce code de validation est à transmettre au patient que vous venez de
-          diagnostiquer covid+, afin qu'il puisse déclarer son statut de malade
-          dans son application de contact tracing.
+          {t('$subtitle_label_part1')}
+          {t('$subtitle_label_part2')}
+          {t('$subtitle_label_part3')}.
         </p>
         <MUI_LoginSection LOGIN_URL={props.LOGIN_URL}></MUI_LoginSection>
       </div>
@@ -19,7 +22,5 @@ const SectionTitle = (props) => {
     )
 
 }
-
-
 
 export default SectionTitle
