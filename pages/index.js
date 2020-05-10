@@ -19,10 +19,14 @@ const USERINFO_URL = "http://localhost:5000/user-info/";
 const CREATECODE_URL = "http://localhost:5000/create-code/";
 //-------- API ENDPOINTS -----------------------------------//
 
+import en from '../public/locales/en'
+import fr from '../public/locales/fr'
+import de from '../public/locales/de'
+
 const lang_pack = {
-    "dummy": {
-        "translation": {}
-    }
+    "fr" : fr, // first position == default language
+    "en" : en, // second position == fallback language
+    "de" : de
 }
 
 i18n
