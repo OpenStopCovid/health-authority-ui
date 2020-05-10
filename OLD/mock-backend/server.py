@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 app.secret_key = b"very awesomely super secret key that no one knows"
 
-FRONT_URL = "http://localhost:3000"
+FRONT_URL = "http://localhost:8080"
 
 
 @app.after_request
